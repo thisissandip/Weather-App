@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Weather</title>
+</head>
+<body>
+
+
+
+    <div class="parent">
+        <div class="weather-side">
+            <h2 class="logo">theweather.co</h2>
+
+            <div class="time">
+                <div class="hour"></div>
+                <div class="min"></div>
+                <div class="sec"></div>
+            </div>
+
+            <div class="info">
+                <div class="temp">
+                </div>
+                <div class="city-date">
+                    <div class="city">
+                        
+                    </div>
+                    <div class="date">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="blur-side">
+
+            <div class="details-container">
+
+                <div class="location-container">
+                    <div class="search-box-container">
+                        <span class="label">Location</span>
+                    
+                        <input id="search-box" type="text">
+                        <i class="fa fa-search fa-2x" aria-hidden="true"></i>
+                    
+                    </div>
+                </div>
+
+                <div class="details-title">Weather Details</div>
+                <div class="all-details">
+                    <div class="detail-item"><div class="item-name">Humidity</div><div class="item-value hum">23</div></div>
+                    <div class="detail-item"><div class="item-name">Cloudy</div><div class="item-value cloud">23</div></div>
+                    <div class="detail-item"><div class="item-name">Wind</div><div class="item-value wind">23</div></div>
+                    <div class="detail-item"><div class="item-name">Pressure</div><div class="item-value pressure">23</div></div> 
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="future-title">Next 7 Days Forecast
+                </div>
+                <div class="future-details">
+                    <div class="detail-item"><div class="item-name day-name"></div><div class="item-value f-weater"></div></div>
+                    <div class="detail-item"><div class="item-name day-name"></div><div class="item-value f-weater"></div></div> 
+                    <div class="detail-item"><div class="item-name day-name"></div><div class="item-value f-weater"></div></div> 
+                    <div class="detail-item"><div class="item-name day-name"></div><div class="item-value f-weater"></div></div> 
+                    <div class="detail-item"><div class="item-name day-name"></div><div class="item-value f-weater"></div></div> 
+                    <div class="detail-item"><div class="item-name day-name"></div><div class="item-value f-weater"></div></div> 
+                    <div class="detail-item"><div class="item-name day-name"></div><div class="item-value f-weater"></div></div> 
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="moment/moment_min_locale.js"></script>
+    <script src="moment/moment_tz.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
