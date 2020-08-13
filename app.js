@@ -106,7 +106,7 @@ function getEnteredPosition(){
     let searchBoxValue = document.getElementById('search-box').value;
    // console.log(searchBoxValue);
 
-    const postion_apiURL= `http://api.positionstack.com/v1/forward?access_key=59d1b915c661de0318deb654991ea49e&query=${searchBoxValue}`
+    const postion_apiURL= `https://api.positionstack.com/v1/forward?access_key=59d1b915c661de0318deb654991ea49e&query=${searchBoxValue}`
 
     fetch(postion_apiURL).then(response => response.json())
     .then(city_data => getCity(city_data,searchBoxValue))
