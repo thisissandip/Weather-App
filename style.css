@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
 *{
     margin:0;
     padding: 0;
@@ -50,6 +52,7 @@ body{
 .time{
     display: flex;
     position: absolute;
+    z-index: 20;
     font-size: 4rem;
     top: 6rem;
     left: 50%;
@@ -59,8 +62,10 @@ body{
 .info{
     position: absolute;
     display: flex;
+    z-index: 10;
     justify-content: center;
     width: 100%;
+    padding-top: 50px;
     bottom: 2rem;
 }
 
@@ -174,8 +179,6 @@ body{
 
 }
 
-
-
 .details-title{
     font-size: 1.2rem;
     font-weight: 500;
@@ -230,7 +233,7 @@ body{
     }
 
     .weather-side{
-        height: 60vh;
+        height: 80vh;
     }
 }
 
@@ -269,3 +272,21 @@ body{
     }
 
 }
+
+@media screen and (max-height: 500px){
+    .weather-side{
+        min-height: 100vh;
+    }
+}
+
+@media screen and (max-height: 350px){
+    .temp,.city,.time{
+        font-size: 2rem;
+    }
+
+    .date{
+        font-size: 1rem;
+    }
+}
+
+
