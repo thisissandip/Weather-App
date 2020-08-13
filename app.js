@@ -106,21 +106,37 @@ function getEnteredPosition(){
     let searchBoxValue = document.getElementById('search-box').value;
    // console.log(searchBoxValue);
 
-    const postion_apiURL= `https://api.positionstack.com/v1/forward?access_key=59d1b915c661de0318deb654991ea49e&query=${searchBoxValue}`
-
+    const postion_apiURL= `https://api.opencagedata.com/geocode/v1/json?q=${searchBoxValue}&key=565adc4e5b404eb3a0d2e66df10b4a49`
     fetch(postion_apiURL).then(response => response.json())
-    .then(city_data => getCity(city_data,searchBoxValue))
+    .then(city_data => { console.log(city_data);
+        getCity(city_data,searchBoxValue)})
 }
 
 
 function getCity(city_data,searchBoxValue){
     console.log("city",city_data)
-    let  checkPlaceName = city_data.data[0].name;
-    let lat =  city_data.data[0].latitude;
-    let lon =  city_data.data[0].longitude;
-    //console.log(checkPlaceName)
+    let display_place;
+    if(city_data.results[0].components.city && (city_data.results[0].components.city).toUpperCase() == searchBoxValue.toUpperCase()){
+        display_place = city_data.results[0].components.city;
+    }
+    else if(city_data.results[0].components.station && (city_data.results[0].components.station).toUpperCase() == searchBoxValue.toUpperCase()){
+        display_place = city_data.results[0].components.station;
+    }
+    else if(city_data.results[0].components.state && (city_data.results[0].components.state).toUpperCase() == searchBoxValue.toUpperCase()){
+        display_place = city_data.results[0].components.state;
+    }
+    else if(city_data.results[0].components.county && (city_data.results[0].components.county).toUpperCase() == searchBoxValue.toUpperCase()){
+        display_place = city_data.results[0].components.county;
+    }
+    else{
+        display_place = city_data.results[0].components.country;
+    }
 
-    show_placeName.innerHTML = checkPlaceName;
+    let lat = city_data.results[0].geometry.lat;
+    let lon =  city_data.results[0].geometry.lng;
+    //console.log(lat,lon)
+
+    show_placeName.innerHTML = display_place;
 
     //calling weather api to get weather data using lon and lat
 
@@ -150,12 +166,14 @@ function getmyposition(pos){
     let my_lon = pos.coords.longitude;
 
     let my_url = `https://api.openweathermap.org/data/2.5/onecall?lat=${my_lat}&lon=${my_lon}&units=metric&%20exclude=hourly,daily&appid=54175a73c73470b1810d761786a3154e`;
-    let rev_geo = `http://api.positionstack.com/v1/reverse?access_key=59d1b915c661de0318deb654991ea49e&query=${my_lat},${my_lon}`;
+    let rev_geo = `https://api.opencagedata.com/geocode/v1/json?q=${my_lat}+${my_lon}&key=565adc4e5b404eb3a0d2e66df10b4a49`;
 
     const city_name = fetch(rev_geo)
     .then(response => response.json())
     .then(pos_data =>{
-         const cur_loc_name = pos_data.data[0].locality;
+        console.log("my position data",pos_data);
+         const cur_loc_name = pos_data.results[0].components.city;
+         //console.log(cur_loc_name)
          show_placeName.innerHTML = cur_loc_name;
     })
     .catch(error => console.log(error))
